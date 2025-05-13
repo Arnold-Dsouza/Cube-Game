@@ -1,24 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "the-cube/dist/**",
-      "use": "@vercel/static"
+  "buildCommand": "npm run build",
+  "outputDirectory": "the-cube/dist",
+  "framework": null,
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
     }
-  ],
-  "routes": [
-    {
-      "src": "/dist/(.*)",
-      "dest": "/the-cube/dist/$1"
-    },
-    { 
-      "src": "/(.*)", 
-      "dest": "/server.js" 
-    }
-  ],
-  "buildCommand": "npm run build"
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/server.js" }
+  ]
 }

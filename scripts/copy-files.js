@@ -22,4 +22,19 @@ fs.copyFileSync(
   path.join(destDir, 'script.js')
 );
 
+// Create a basic vercel.json in the dist directory if it doesn't exist
+// This helps with routing when deployed
+const vercelConfigPath = path.join(destDir, 'vercel.json');
+if (!fs.existsSync(vercelConfigPath)) {
+  const vercelConfig = {
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/(.*)", "dest": "/index.html" }
+    ]
+  };
+  
+  fs.writeFileSync(vercelConfigPath, JSON.stringify(vercelConfig, null, 2));
+  console.log('Created vercel.json in dist directory');
+}
+
 console.log('Files copied successfully to dist directory');

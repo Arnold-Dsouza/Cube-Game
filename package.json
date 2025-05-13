@@ -10,7 +10,7 @@
     "build": "sass the-cube/src/style.sass:the-cube/dist/style.css && node scripts/copy-files.js",
     "vercel-build": "npm run build",
     "dev": "concurrently \"npm run start\" \"npm run sass\"",
-    "deploy": "vercel"
+    "deploy": "node deploy.js"
   },
   "keywords": [
     "cube",
