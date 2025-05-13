@@ -11,7 +11,13 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'the-cube/dist/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-  console.log(`Press Ctrl+C to stop the server`);
-});
+// Check if being run directly (not imported)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Press Ctrl+C to stop the server`);
+  });
+}
+
+// Export the app for serverless environments
+module.exports = app;

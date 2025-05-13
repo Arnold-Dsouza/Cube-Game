@@ -1,13 +1,16 @@
-{
-  "name": "the-cube",
+{  "name": "the-cube",
   "version": "1.0.0",
   "description": "Interactive Rubik's Cube simulator",
-  "main": "index.js",
-  "scripts": {
+  "main": "server.js",
+  "engines": {
+    "node": ">=14.x"
+  },  "scripts": {
     "start": "node server.js",
     "sass": "sass --watch the-cube/src/style.sass:the-cube/dist/style.css",
-    "build": "sass the-cube/src/style.sass:the-cube/dist/style.css",
-    "dev": "concurrently \"npm run start\" \"npm run sass\""
+    "build": "sass the-cube/src/style.sass:the-cube/dist/style.css && node scripts/copy-files.js",
+    "vercel-build": "npm run build",
+    "dev": "concurrently \"npm run start\" \"npm run sass\"",
+    "deploy": "vercel"
   },
   "keywords": [
     "cube",

@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "the-cube/dist/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/dist/(.*)",
+      "dest": "/the-cube/dist/$1"
+    },
+    { 
+      "src": "/(.*)", 
+      "dest": "/server.js" 
+    }
+  ],
+  "buildCommand": "npm run build"
+}
